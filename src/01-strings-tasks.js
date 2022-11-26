@@ -261,16 +261,12 @@ function getRectangleString(width, height) {
 function encodeToRot13(str) {
   let newStr = '';
   for (let i = 0; i < str.length; i += 1) {
-    if (
-      str.charCodeAt(i) === 32 || str.charCodeAt(i) === 33 || str.charCodeAt(i) === 63
-    ) {
-      newStr += String.fromCharCode(str.charCodeAt(i));
-    }
     if (str.charCodeAt(i) >= 65 && str.charCodeAt(i) <= 90) {
       newStr += String.fromCharCode(((str.charCodeAt(i) + 13 - 65) % 26) + 65);
-    }
-    if (str.charCodeAt(i) >= 97 && str.charCodeAt(i) <= 122) {
+    } else if (str.charCodeAt(i) >= 97 && str.charCodeAt(i) <= 122) {
       newStr += String.fromCharCode(((str.charCodeAt(i) + 13 - 97) % 26) + 97);
+    } else {
+      newStr += String.fromCharCode(str.charCodeAt(i));
     }
   }
   return newStr;
